@@ -40,8 +40,8 @@ def exibir_opcoes():
     print('➤ 3. Ativar restaurantes')
     print('➤ 4. Sair\n')
 
-def calcular_espacamento_entre_elementos_de_uma_lista(lista, chave):
-    return max(len(item[chave]) for item in lista) + 1
+def calcular_espacamento(chave):
+    return max((len(restaurante[chave]) for restaurante in restaurantes)) + 2
 
 def opcao_invalida():
     print(f'{cor_vermelho}{"❌ Opção inválida"}{reset_cor}')
@@ -58,17 +58,14 @@ def cadastrar_restaurante():
 def listar_restaurantes():
     os.system('clear')
     exibir_subtitulos('Listando restaurantes')
-    # tamanho_maximo = max(len(restaurante['nome']) for restaurante in restaurantes)
-    # tamanho_maximo_categoria = max(len(restaurante['categoria']) for restaurante in restaurantes)
-
-    tamanho_maximo_nome = calcular_espacamento_entre_elementos_de_uma_lista(restaurantes, 'nome')
-    tamanho_maximo_categoria = calcular_espacamento_entre_elementos_de_uma_lista(restaurantes, 'categoria')
+    espacamento_nome = calcular_espacamento('nome')
+    espacamento_categoria = calcular_espacamento('categoria')
     
-    print(f'{cor_verde}{"Restaurantes".ljust(tamanho_maximo_nome)} | {"Categoria".ljust(tamanho_maximo_categoria)} | Aberto{reset_cor}')
+    print(f'{cor_verde}{"Restaurantes".ljust(espacamento_nome)} | {"Categoria".ljust(espacamento_categoria)} | Aberto{reset_cor}')
 
     for restaurante in restaurantes:
-        nome = restaurante['nome'].ljust(tamanho_maximo_nome)
-        categoria = restaurante['categoria'].ljust(tamanho_maximo_categoria)
+        nome = restaurante['nome'].ljust(espacamento_nome)
+        categoria = restaurante['categoria'].ljust(espacamento_categoria)
         aberto = '✔️' if restaurante['aberto'] else '☐'
         print(f"{nome} | {categoria.upper()} | ⇒ {aberto}")
 
