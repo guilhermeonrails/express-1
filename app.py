@@ -11,7 +11,7 @@ restaurantes = [restaurante_praca, restaurante_nonna, restaurante_sushi, restaur
 cor_vermelho = "\033[41m"
 cor_azul = "\033[34m"
 cor_verde = "\033[32m"
-reset_cor = "\033[0m"
+cor_padrao = "\033[0m"
 
 def exibir_nome_do_programa():
     print('''Sabor express''')
@@ -38,7 +38,7 @@ def calcular_espacamento():
     return max((len(restaurante.nome) for restaurante in restaurantes)) + 2, max((len(restaurante.categoria) for restaurante in restaurantes)) + 2
 
 def opcao_invalida():
-    print(f'{cor_vermelho}{"❌ Opção inválida"}{reset_cor}')
+    print(f'{cor_vermelho}{"❌ Opção inválida"}{cor_padrao}')
     input('\nPressione enter para voltar ao menu e escolha uma opção válida! ')
 
 def cadastrar_restaurante():
@@ -52,7 +52,7 @@ def listar_restaurantes():
     exibir_subtitulos('Listando restaurantes')
     espacamento_nome, espacamento_categoria = calcular_espacamento()
     
-    print(f'{cor_verde}{"Restaurantes".ljust(espacamento_nome)} | {"Categoria".ljust(espacamento_categoria)} | Aberto{reset_cor}')
+    print(f'{cor_verde}{"Restaurantes".ljust(espacamento_nome)} | {"Categoria".ljust(espacamento_categoria)} | Aberto{cor_padrao}')
 
     for restaurante in restaurantes:
         nome = restaurante.nome.ljust(espacamento_nome)
@@ -77,7 +77,7 @@ def ativar_restaurante():
             break
             
     if not restaurante_encontrado:
-        print(f'{cor_vermelho}❌ Restaurante não encontrado{reset_cor}')
+        print(f'{cor_vermelho}❌ Restaurante não encontrado{cor_padrao}')
     
     input('\nPressione enter para voltar ao menu e escolher uma opção válida! ')
 
