@@ -10,7 +10,7 @@ restaurantes = [
 cor_vermelho = "\033[41m"
 cor_azul = "\033[34m"
 cor_verde = "\033[32m"
-reset_cor = "\033[0m"
+cor_padrao = "\033[0m"
 
 def exibir_nome_do_programa():
     print('''
@@ -44,7 +44,7 @@ def calcular_espacamento(chave):
     return max((len(restaurante[chave]) for restaurante in restaurantes)) + 2
 
 def opcao_invalida():
-    print(f'{cor_vermelho}{"❌ Opção inválida"}{reset_cor}')
+    print(f'{cor_vermelho}{"❌ Opção inválida"}{cor_padrao}')
     input('\nPressione enter para voltar ao menu e escolha uma opção válida! ')
 
 def cadastrar_restaurante():
@@ -61,7 +61,7 @@ def listar_restaurantes():
     espacamento_nome = calcular_espacamento('nome')
     espacamento_categoria = calcular_espacamento('categoria')
     
-    print(f'{cor_verde}{"Restaurantes".ljust(espacamento_nome)} | {"Categoria".ljust(espacamento_categoria)} | Aberto{reset_cor}')
+    print(f'{cor_verde}{"Restaurantes".ljust(espacamento_nome)} | {"Categoria".ljust(espacamento_categoria)} | Aberto{cor_padrao}')
 
     for restaurante in restaurantes:
         nome = restaurante['nome'].ljust(espacamento_nome)
@@ -86,7 +86,7 @@ def alternar_estado_restaurante():
             break  # Saia do loop assim que encontrar o restaurante
             
     if not restaurante_encontrado:
-        print(f'{cor_vermelho}❌ Restaurante não encontrado{reset_cor}')
+        print(f'{cor_vermelho}❌ Restaurante não encontrado{cor_padrao}')
     
     input('\nPressione enter para voltar ao menu e escolha uma opção válida! ')
 
