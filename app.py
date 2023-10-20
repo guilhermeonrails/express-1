@@ -23,7 +23,6 @@ def exibir_nome_do_programa():
 ''')
 
 def finalizar_app():
-    os.system('clear')
     exibir_subtitulos('Finalizando o app')
 
 def exibir_subtitulos(texto):
@@ -74,7 +73,6 @@ def listar_restaurantes():
     main()
 
 def alternar_estado_restaurante():
-    os.system('clear')
     exibir_subtitulos('Ativação de restaurante')
     nome_restaurante_para_ativar = input('Digite o nome do restaurante que deseja ativar: ')
     restaurante_encontrado = False  # Variável para rastrear se o restaurante foi encontrado
