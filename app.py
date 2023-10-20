@@ -1,7 +1,7 @@
 import os
 
 restaurantes = [
-    {'nome': 'Praça', 'categoria': 'Gourmet', 'aberto': None},
+    {'nome': 'Praça', 'categoria': 'Gourmet', 'aberto': False},
     {'nome': 'Cantina da Nonna', 'categoria': 'Italiana', 'aberto': True},
     {'nome': 'Sushi', 'categoria': 'Japonesa', 'aberto': False},
     {'nome': 'Pizza Suprema', 'categoria': 'Pizza', 'aberto': False}
@@ -71,7 +71,7 @@ def listar_restaurantes():
 
     input('\nPressione enter para voltar ')
 
-def ativar_restaurante():
+def alternar_estado_restaurante():
     os.system('clear')
     exibir_subtitulos('Ativação de restaurante')
     nome_restaurante_para_ativar = input('Digite o nome do restaurante que deseja ativar: ')
@@ -90,22 +90,26 @@ def ativar_restaurante():
     
     input('\nPressione enter para voltar ao menu e escolha uma opção válida! ')
 
-while True:
-    os.system('clear')
-    exibir_nome_do_programa()
-    exibir_opcoes()
-    try:
-        opcao_escolhida = int(input('Escolha uma opção: '))
-        if opcao_escolhida == 1:
-            cadastrar_restaurante()
-        elif opcao_escolhida == 2:
-            listar_restaurantes()
-        elif opcao_escolhida == 3:
-            ativar_restaurante()
-        elif opcao_escolhida == 4:
-            finalizar_app()
-            break
-        else:
+def main():
+    while True:
+        os.system('clear')
+        exibir_nome_do_programa()
+        exibir_opcoes()
+        try:
+            opcao_escolhida = int(input('Escolha uma opção: '))
+            if opcao_escolhida == 1:
+                cadastrar_restaurante()
+            elif opcao_escolhida == 2:
+                listar_restaurantes()
+            elif opcao_escolhida == 3:
+                alternar_estado_restaurante()
+            elif opcao_escolhida == 4:
+                finalizar_app()
+                break
+            else:
+                opcao_invalida()
+        except:
             opcao_invalida()
-    except:
-        opcao_invalida()
+
+if __name__ == "__main__":
+    main()
