@@ -27,6 +27,7 @@ def finalizar_app():
     exibir_subtitulos('Finalizando o app')
 
 def exibir_subtitulos(texto):
+    os.system('clear')
     linha = '*' * (len(texto) + 4)
     texto_personalizado = f' {texto} ' 
     print(linha)
@@ -46,17 +47,17 @@ def calcular_espacamento(chave):
 def opcao_invalida():
     print(f'{cor_vermelho}{"❌ Opção inválida"}{cor_padrao}')
     input('\nPressione enter para voltar ao menu e escolha uma opção válida! ')
+    main()
 
 def cadastrar_restaurante():
-    os.system('clear')
     exibir_subtitulos('Adicionar restaurante')
     nome_restaurante = input('Digite o nome do restaurante que deseja cadastrar: ')
     categoria = input(f'Qual a categoria do restaurante {nome_restaurante}: ')
     dados_novo_restaurante = {'nome': nome_restaurante, 'categoria': categoria, 'aberto': False}
     restaurantes.append(dados_novo_restaurante)
+    main()
 
 def listar_restaurantes():
-    os.system('clear')
     exibir_subtitulos('Listando restaurantes')
     espacamento_nome = calcular_espacamento('nome')
     espacamento_categoria = calcular_espacamento('categoria')
@@ -70,6 +71,7 @@ def listar_restaurantes():
         print(f"{nome} | {categoria.upper()} | ⇒ {aberto}")
 
     input('\nPressione enter para voltar ')
+    main()
 
 def alternar_estado_restaurante():
     os.system('clear')
@@ -89,27 +91,28 @@ def alternar_estado_restaurante():
         print(f'{cor_vermelho}❌ Restaurante não encontrado{cor_padrao}')
     
     input('\nPressione enter para voltar ao menu e escolha uma opção válida! ')
+    main()
+
+def escolher_opcao():
+    try:
+        opcao_escolhida = int(input('Escolha uma opção: '))
+        if opcao_escolhida == 1:
+            cadastrar_restaurante()
+        elif opcao_escolhida == 2:
+            listar_restaurantes()
+        elif opcao_escolhida == 3:
+            alternar_estado_restaurante()
+        elif opcao_escolhida == 4:
+            finalizar_app()
+        else:
+            opcao_invalida()
+    except:
+        opcao_invalida()
 
 def main():
-    while True:
-        os.system('clear')
         exibir_nome_do_programa()
         exibir_opcoes()
-        try:
-            opcao_escolhida = int(input('Escolha uma opção: '))
-            if opcao_escolhida == 1:
-                cadastrar_restaurante()
-            elif opcao_escolhida == 2:
-                listar_restaurantes()
-            elif opcao_escolhida == 3:
-                alternar_estado_restaurante()
-            elif opcao_escolhida == 4:
-                finalizar_app()
-                break
-            else:
-                opcao_invalida()
-        except:
-            opcao_invalida()
+        escolher_opcao()
 
 if __name__ == "__main__":
     main()
