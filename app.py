@@ -50,21 +50,7 @@ def alternar_estado_restaurante():
     input('\nPressione enter para voltar ao menu e escolha uma opção válida! ')
     main()
 
-def escolher_opcao():
-    try:
-        opcao_escolhida = int(input('Escolha uma opção: '))
-        if opcao_escolhida == 1:
-            RegistrarRestaurante()
-        elif opcao_escolhida == 2:
-            listar_restaurantes()
-        elif opcao_escolhida == 3:
-            alternar_estado_restaurante()
-        elif opcao_escolhida == 4:
-           MenuSair()
-        else:
-            opcao_invalida()
-    except:
-        opcao_invalida()
+
 
 def main():
         menu = Menu()

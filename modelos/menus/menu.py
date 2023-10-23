@@ -20,3 +20,13 @@ class Menu:
         print(texto_personalizado)
         print(linha)
         print()
+
+    def escolher_opcao(self):
+    opcoes = {
+        1: RegistrarRestaurante,
+        2: listat_restaurantes,
+        3: alternar_estado_restaurante
+        4: MenuSair,
+    }
+
+    
