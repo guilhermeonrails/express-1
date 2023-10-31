@@ -16,3 +16,4 @@ Um programa simples para gerenciar restaurantes, onde você pode adicionar, list
 
    ```bash
    python app.py
+```
