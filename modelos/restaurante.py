@@ -33,8 +33,8 @@ class Restaurante:
         self._avaliacoes.append(avaliacao)
 
     def adicionar_bebida_no_cardapio(self, nome, preco, tamanho):
-        item_para_adiconar = Bebida(nome, preco, tamanho)
-        self._cardapio.append(item_para_adiconar)
+        item_para_adicionar = Bebida(nome, preco, tamanho)
+        self._cardapio.append(item_para_adicionar)
 
     def adicionar_prato_no_cardapio(self, nome, preco, descricao):
         item_para_adiconar = Prato(nome, preco, descricao)

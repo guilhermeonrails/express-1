@@ -1,6 +1,6 @@
 from modelos.cardapio.item_cardapio import ItemCardapio
 
-class Bebida():
+class Bebida(ItemCardapio):
     '''
     Classe que representa uma bebida no cardápio de um restaurante.
 
