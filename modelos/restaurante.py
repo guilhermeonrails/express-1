@@ -52,3 +52,4 @@ class Restaurante:
             return 0
         media_das_notas = round(sum(avaliacao._nota for avaliacao in self._avaliacoes) / len(self._avaliacoes), 1)
         return media_das_notas
+    
