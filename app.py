@@ -1,32 +1,36 @@
+from fastapi import FastAPI, Query
 import requests
-import json
 
-# Faça uma solicitação HTTP para obter o JSON
-url = 'https://guilhermeonrails.github.io/api-restaurantes/restaurantes.json'
-response = requests.get(url)
+app = FastAPI()
 
-if response.status_code == 200:
-    dados_json = response.json()
-    dados_restaurante = {}
+@app.get('/api/ola')
+def diga_ola():
+    return {'Olá': 'Mundo'}
 
-    for item in dados_json:
-        nome_restaurante = item["Company"]
-        if nome_restaurante not in dados_restaurante:
-            dados_restaurante[nome_restaurante] = []
+@app.get('/api/restaurantes/')
+def get_restaurante(restaurante: str = Query(None)):
+    # Fazer uma solicitação HTTP para obter o JSON
+    url = 'https://guilhermeonrails.github.io/api-restaurantes/restaurantes.json'
+    response = requests.get(url)
 
-        dados_restaurante[nome_restaurante].append({
-            "Item": item["Item"],
-            "Price": item["price"],
-            "Description": item["description"]
-        })
+    if response.status_code == 200:
+        dados_json = response.json()
 
-    print(dados_restaurante)
+        if restaurante is None:
+            return {'dados': dados_json}
 
-    for nome_restaurante, dados in dados_restaurante.items():
-        nome_arquivo = f"{nome_restaurante}.json"
-        with open(nome_arquivo, 'w') as arquivo_restaurante:
-            json.dump(dados, arquivo_restaurante, indent=4)
+        itens = []
+        for item in dados_json:
+            if item['Company'] == restaurante:
+                itens.append({
+                    "Item": item["Item"],
+                    "Price": item["price"],
+                    "Description": item["description"]
+                })
 
-else:
-    print(f"Erro: Código de status {response.status_code}")
+        return {'Restaurante': restaurante, 'itens': itens}
+
+    else:
+        return {'error': f"'{response.status_code} - {response.text}"}
+
 
